@@ -8,8 +8,35 @@ export default function AuthForm({ onAuth, availableCountries, users }) {
   const [country, setCountry] = useState('');
   const [idNumber, setIdNumber] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
+  const [facebookUrl, setFacebookUrl] = useState('');
   const [status, setStatus] = useState('');
   const [error, setError] = useState('');
+
+  const handleSocialLogin = (provider) => {
+    setStatus('Processing...');
+    setError('');
+
+    setTimeout(() => {
+      if (provider === 'google') {
+        const googleUser = users.find((u) => u.email.toLowerCase().endsWith('@gmail.com'));
+        if (googleUser) {
+          onAuth(googleUser);
+          setStatus('Logged in with Google successfully!');
+          return;
+        }
+        setError('No Google user found. Please register with a Gmail address first.');
+      } else if (provider === 'facebook') {
+        const facebookUser = users.find((u) => u.facebookUrl || u.facebook || u.email.toLowerCase().includes('facebook'));
+        if (facebookUser) {
+          onAuth(facebookUser);
+          setStatus('Logged in with Facebook successfully!');
+          return;
+        }
+        setError('No Facebook user found. Please register with your Facebook profile link first.');
+      }
+      setStatus('');
+    }, 300);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -45,7 +72,16 @@ export default function AuthForm({ onAuth, availableCountries, users }) {
           setStatus('');
           setError('User already exists, please login.');
         } else {
-          const newUser = { id: users.length + 1, username, email, password, country, idNumber, whatsapp };
+          const newUser = {
+            id: users.length + 1,
+            username,
+            email,
+            password,
+            country,
+            idNumber,
+            whatsapp,
+            facebookUrl,
+          };
           users.push(newUser);
           onAuth(newUser);
           setStatus('Account created and logged in!');
@@ -80,6 +116,9 @@ export default function AuthForm({ onAuth, availableCountries, users }) {
 
             <label htmlFor="auth-whatsapp">WhatsApp Number</label>
             <input id="auth-whatsapp" type="tel" value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)} required placeholder="+254712345678" />
+
+            <label htmlFor="auth-facebook">Facebook profile link</label>
+            <input id="auth-facebook" type="url" value={facebookUrl} onChange={(e) => setFacebookUrl(e.target.value)} placeholder="https://www.facebook.com/yourprofile" />
           </>
         )}
 
@@ -88,6 +127,13 @@ export default function AuthForm({ onAuth, availableCountries, users }) {
 
         <button type="submit" className="ad-cta">{mode === 'login' ? 'Login' : 'Register'}</button>
       </form>
+
+      {mode === 'login' && (
+        <div className="social-login-buttons">
+          <button type="button" className="social-btn google" onClick={() => handleSocialLogin('google')}>Login with Google</button>
+          <button type="button" className="social-btn facebook" onClick={() => handleSocialLogin('facebook')}>Login with Facebook</button>
+        </div>
+      )}
 
       <div className="auth-toggle">
         {mode === 'login' ? (

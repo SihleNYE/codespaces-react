@@ -357,6 +357,39 @@ body {
   padding: 0.5rem;
 }
 
+.social-login-buttons {
+  margin-top: 0.8rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.social-btn {
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(15, 23, 42, 0.85);
+  color: #e2e8f0;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.social-btn.google {
+  border-color: #9d174d;
+  background: linear-gradient(120deg, #f43f5e, #ea580c);
+}
+
+.social-btn.facebook {
+  border-color: #2563eb;
+  background: linear-gradient(120deg, #1d4ed8, #0ea5e9);
+}
+
+.social-btn:hover,
+.social-btn:focus-visible {
+  opacity: 0.95;
+}
+
 .error-text {
   margin-top: 0.5rem;
   color: #f87171;
@@ -622,10 +655,15 @@ body {
 .filter-controls > div {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
   gap: 0.2rem;
   min-width: 140px;
 }
 
+.filter-controls > div label {
+  align-self: flex-start;
+}
 @media (max-width: 880px) {
   .filter-controls {
     flex-wrap: wrap;
