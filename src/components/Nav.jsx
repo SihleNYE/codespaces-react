@@ -16,12 +16,7 @@ const Nav = ({
     <nav className="top-nav">
       <div className="brand">AdVids</div>
       <ul className="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#channels">Channels</a></li>
-        <li><a href="#samples">Samples</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+        <li><a href="#home" aria-label="Home" title="Home"><i className="bi bi-house"></i></a></li>\n        <li><a href="#channels" aria-label="Channels" title="Channels"><i className="bi bi-tv"></i></a></li>\n        <li><a href="#samples" aria-label="Samples" title="Samples"><i className="bi bi-play-circle"></i></a></li>\n        <li><a href="#about" aria-label="About" title="About"><i className="bi bi-info-circle"></i></a></li>\n        <li><a href="#contact" aria-label="Contact" title="Contact"><i className="bi bi-envelope"></i></a></li>\n      </ul>
 
       {activeUser ? (
         <div className="user-status">
