@@ -545,7 +545,11 @@ body {
   min-height: 100vh;
   text-align: center;
   padding: 1rem;
-  padding-top: 5.2rem;
+  padding-top: 6.2rem;
+}
+
+.hero-header {
+  margin-top: 0.8rem;
 }
 
 .brand {
@@ -606,6 +610,28 @@ body {
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+.filter-controls {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.filter-controls > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 140px;
+}
+
+@media (max-width: 880px) {
+  .filter-controls {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
 }
 
 .category-dropdown select {

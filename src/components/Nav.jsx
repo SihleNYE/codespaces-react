@@ -47,42 +47,44 @@ const Nav = ({
         </button>
       )}
 
-      <div className="channel-dropdown">
-        <label htmlFor="channel-select">Channel</label>
-        <select
-          id="channel-select"
-          value={activeChannel?.user || 'none'}
-          onChange={(e) => {
-            const selectedUser = e.target.value;
-            if (selectedUser === 'none') {
-              window.location.hash = '#home';
-              setActiveChannel(null);
-            } else {
-              const channel = channelList.find((ch) => ch.user === selectedUser);
-              if (channel) handleChannelClick(channel);
-            }
-          }}
-        >
-          <option value="none">Select channel</option>
-          {channelList.map((channel) => (
-            <option key={channel.user} value={channel.user}>{channel.name}</option>
-          ))}
-        </select>
-      </div>
+      <div className="filter-controls">
+        <div className="channel-dropdown">
+          <label htmlFor="channel-select">Channel</label>
+          <select
+            id="channel-select"
+            value={activeChannel?.user || 'none'}
+            onChange={(e) => {
+              const selectedUser = e.target.value;
+              if (selectedUser === 'none') {
+                window.location.hash = '#home';
+                setActiveChannel(null);
+              } else {
+                const channel = channelList.find((ch) => ch.user === selectedUser);
+                if (channel) handleChannelClick(channel);
+              }
+            }}
+          >
+            <option value="none">Select channel</option>
+            {channelList.map((channel) => (
+              <option key={channel.user} value={channel.user}>{channel.name}</option>
+            ))}
+          </select>
+        </div>
 
-      <div className="category-dropdown">
-        <label htmlFor="category-select">Category</label>
-        <select
-          id="category-select"
-          value={activeCategory}
-          onChange={(e) => setActiveCategory(e.target.value)}
-          aria-label="Filter ads by category"
-        >
-          <option value="all">All</option>
-          <option value="brand">Brand</option>
-          <option value="social">Social</option>
-          <option value="conversion">Conversion</option>
-        </select>
+        <div className="category-dropdown">
+          <label htmlFor="category-select">Category</label>
+          <select
+            id="category-select"
+            value={activeCategory}
+            onChange={(e) => setActiveCategory(e.target.value)}
+            aria-label="Filter ads by category"
+          >
+            <option value="all">All</option>
+            <option value="brand">Brand</option>
+            <option value="social">Social</option>
+            <option value="conversion">Conversion</option>
+          </select>
+        </div>
       </div>
     </nav>
   );
