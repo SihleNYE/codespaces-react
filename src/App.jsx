@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import { channels as initialChannels, ads as initialAds, availableCountries, users } from './data';
 import { formatPriceForCountry } from './utils/currency';
+import { getVideoEmbed } from './utils/videoEmbed';
+
 import AuthForm from './components/AuthForm';
 import ContactForm from './components/ContactForm';
 import ContactOptions from './components/ContactOptions';
@@ -158,14 +160,15 @@ function App() {
               const location = ownerInfo.city && ownerInfo.country ? `${ownerInfo.city}, ${ownerInfo.country}` : 'Location unknown';
               return (
                 <article className="ad-card" key={ad.id}>
-                  <video className="ad-video" src={ad.src} controls muted loop playsInline />
+                  <div className="ad-video-container" dangerouslySetInnerHTML={{ __html: getVideoEmbed(ad.src) }} />
+
                   <div className="ad-body">
                     <div className="ad-tags">
                       <button type="button" className="ad-tag ad-tag-action" onClick={() => { if (channelByUser[ad.owner]) handleChannelClick(channelByUser[ad.owner]); }}>
-                        Channel: {ad.owner}
+                         <i className="bi bi-tv"></i> {ad.owner}
                       </button>
                       <button type="button" className="ad-tag ad-tag-action" onClick={() => setActiveCategory(ad.category)}>
-                        Category: {ad.category}
+                        <i class="bi bi-border-style"></i>{ad.category}
                       </button>
                       <span className="ad-tag">{location}</span>
                     </div>

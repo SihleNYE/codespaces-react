@@ -15,7 +15,7 @@ const Nav = ({
   setActiveChannel,
 }) => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light px-3 flex-row">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light px-3">
       <div className="container-fluid">
         
         {/* Brand */}

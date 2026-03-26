@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import ContactOptions from './ContactOptions';
+import { getVideoEmbed } from '../utils/videoEmbed';
+
 
 export default function ChannelPage({ channel, ads = [], activeUser, onCategorySelect, onChannelSelect, onAddAd, onUpdateAd, onDeleteAd, channelByUser, userByUsername, formatPriceForCountry }) {
   if (!channel) {
@@ -111,7 +113,8 @@ export default function ChannelPage({ channel, ads = [], activeUser, onCategoryS
           const location = ownerInfo.city && ownerInfo.country ? `${ownerInfo.city}, ${ownerInfo.country}` : 'Location unknown';
           return (
             <article className="ad-card" key={ad.id}>
-              <video className="ad-video" src={ad.src} controls muted loop playsInline />
+              <div className="ad-video-container" dangerouslySetInnerHTML={{ __html: getVideoEmbed(ad.src) }} />
+
               <div className="ad-body">
                 <div className="ad-tags">
                   <button type="button" className="ad-tag ad-tag-action" onClick={() => { if (onChannelSelect) { const activeChannelInfo = channelByUser[ad.owner]; if (activeChannelInfo) onChannelSelect(activeChannelInfo); } }}>
