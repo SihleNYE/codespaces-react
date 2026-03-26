@@ -114,10 +114,10 @@ function App() {
 
       {!activeChannel && (
         <>
-          <header id="home" className="hero-header">
+          {/* <header id="home" className="hero-header">
             <h1>Short-Form Video Ads Studio</h1>
             <p>Create, preview, and promote the best short videos for your brand audience.</p>
-          </header>
+          </header> */}
 
           {activeUser && !channelByUser[activeUser.username] && (
             <section className="channel-create" aria-label="Create your channel">
@@ -127,13 +127,16 @@ function App() {
           )}
 
           {activeUser && channelByUser[activeUser.username] && (
-            <section className="ad-editor" aria-label="Create your ad">
-              <h2>Create a new ad for your channel</h2>
-              <AdCreator owner={activeUser.username} onAddAd={addAd} />
-            </section>
-          )}
-{/* 
-          <section id="channels" className="channel-list" aria-label="Channel pages">
+            <details className="ad-editor" aria-label="Create your ad">
+    <summary>
+      <h2>Create a new ad for your channel</h2>
+    </summary>
+    <AdCreator owner={activeUser.username} onAddAd={addAd} />
+  </details>)}
+
+
+
+        {/*   <section id="channels" className="channel-list" aria-label="Channel pages">
             <h2>Channels</h2>
             <div className="ad-grid">
               {channelList.map((channel) => (
