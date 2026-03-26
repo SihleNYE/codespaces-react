@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const Nav = ({
   activeCategory,
@@ -16,7 +16,33 @@ const Nav = ({
     <nav className="top-nav">
       <div className="brand">AdVids</div>
       <ul className="nav-links">
-        <li><a href="#home" aria-label="Home" title="Home"><i className="bi bi-house"></i></a></li>\n        <li><a href="#channels" aria-label="Channels" title="Channels"><i className="bi bi-tv"></i></a></li>\n        <li><a href="#samples" aria-label="Samples" title="Samples"><i className="bi bi-play-circle"></i></a></li>\n        <li><a href="#about" aria-label="About" title="About"><i className="bi bi-info-circle"></i></a></li>\n        <li><a href="#contact" aria-label="Contact" title="Contact"><i className="bi bi-envelope"></i></a></li>\n      </ul>
+        <li>
+          <a href="#home" aria-label="Home" title="Home">
+            <i className="bi bi-house"></i> homer
+          </a>
+        </li>
+        <li>
+          <a href="#channels" aria-label="Channels" title="Channels">
+            <i className="bi bi-tv"></i>
+          </a>
+        </li>
+
+        <li>
+          <a href="#samples" aria-label="Samples" title="Samples">
+            <i className="bi bi-play-circle"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#about" aria-label="About" title="About">
+            <i className="bi bi-info-circle"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#contact" aria-label="Contact" title="Contact">
+            <i className="bi bi-envelope"></i>
+          </a>
+        </li>
+      </ul>
 
       {activeUser ? (
         <div className="user-status">
@@ -38,7 +64,7 @@ const Nav = ({
           type="button"
           onClick={() => setShowAuth((v) => !v)}
         >
-          {showAuth ? 'Close' : 'Login / Register'}
+          {showAuth ? "Close" : "Login / Register"}
         </button>
       )}
 
@@ -47,21 +73,25 @@ const Nav = ({
           <label htmlFor="channel-select">Channel</label>
           <select
             id="channel-select"
-            value={activeChannel?.user || 'none'}
+            value={activeChannel?.user || "none"}
             onChange={(e) => {
               const selectedUser = e.target.value;
-              if (selectedUser === 'none') {
-                window.location.hash = '#home';
+              if (selectedUser === "none") {
+                window.location.hash = "#home";
                 setActiveChannel(null);
               } else {
-                const channel = channelList.find((ch) => ch.user === selectedUser);
+                const channel = channelList.find(
+                  (ch) => ch.user === selectedUser
+                );
                 if (channel) handleChannelClick(channel);
               }
             }}
           >
             <option value="none">Select channel</option>
             {channelList.map((channel) => (
-              <option key={channel.user} value={channel.user}>{channel.name}</option>
+              <option key={channel.user} value={channel.user}>
+                {channel.name}
+              </option>
             ))}
           </select>
         </div>

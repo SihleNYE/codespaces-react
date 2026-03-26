@@ -185,7 +185,7 @@ function App() {
       </section>
 
       <section id="contact" className="info-panel">
-        <h2>Contact a Seller</h2>
+        <h2>Contact Us</h2>
         <p>Fill in your info and message, and a seller will reach out with a campaign estimate.</p>
         {!activeUser ? (
           <div className="auth-required">
