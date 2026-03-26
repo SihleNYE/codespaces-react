@@ -18,7 +18,7 @@ const Nav = ({
     <nav className="top-nav">
       <div className="brand">
         <a href="#home" aria-label="Home" title="Home">
-            <i className="bi bi-house"></i> AdVids
+            WYKapp
           </a>
       </div>
       <ul className="nav-links">

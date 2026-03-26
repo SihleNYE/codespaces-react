@@ -132,7 +132,7 @@ function App() {
               <AdCreator owner={activeUser.username} onAddAd={addAd} />
             </section>
           )}
-
+{/* 
           <section id="channels" className="channel-list" aria-label="Channel pages">
             <h2>Channels</h2>
             <div className="ad-grid">
@@ -147,7 +147,7 @@ function App() {
                 </article>
               ))}
             </div>
-          </section>
+          </section> */}
 
           <section id="samples" className="ad-grid" aria-label="Video ad samples">
             {filteredAds.map((ad) => {
