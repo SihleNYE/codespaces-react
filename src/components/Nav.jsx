@@ -3,6 +3,8 @@ import React from "react";
 const Nav = ({
   activeCategory,
   setActiveCategory,
+  searchQuery,
+  setSearchQuery,
   activeChannel,
   channelList,
   activeUser,
@@ -14,14 +16,18 @@ const Nav = ({
 }) => {
   return (
     <nav className="top-nav">
-      <div className="brand">AdVids</div>
-      <ul className="nav-links">
-        <li>
-          <a href="#home" aria-label="Home" title="Home">
-            <i className="bi bi-house"></i> homer
+      <div className="brand">
+        <a href="#home" aria-label="Home" title="Home">
+            <i className="bi bi-house"></i> AdVids
           </a>
-        </li>
-        <li>
+      </div>
+      <ul className="nav-links">
+        {/* <li>
+          <a href="#home" aria-label="Home" title="Home">
+            <i className="bi bi-house"></i> 
+          </a>
+        </li> */}
+        {/* <li>
           <a href="#channels" aria-label="Channels" title="Channels">
             <i className="bi bi-tv"></i>
           </a>
@@ -32,8 +38,8 @@ const Nav = ({
             <i className="bi bi-play-circle"></i>
           </a>
         </li>
-        <li>
-          <a href="#about" aria-label="About" title="About">
+        <li> */}
+          {/* <a href="#about" aria-label="About" title="About">
             <i className="bi bi-info-circle"></i>
           </a>
         </li>
@@ -41,7 +47,7 @@ const Nav = ({
           <a href="#contact" aria-label="Contact" title="Contact">
             <i className="bi bi-envelope"></i>
           </a>
-        </li>
+        </li> */}
       </ul>
 
       {activeUser ? (
@@ -96,6 +102,16 @@ const Nav = ({
           </select>
         </div>
 
+        <div className="search-input-wrapper">
+          <label htmlFor="search-input">Search</label>
+          <input
+            id="search-input"
+            type="search"
+            placeholder="Search category, channel, user, tags..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
         <div className="category-dropdown">
           <label htmlFor="category-select">Category</label>
           <select

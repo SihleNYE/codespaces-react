@@ -12,6 +12,7 @@ import Nav from './components/Nav';
 
 function App() {
   const [activeCategory, setActiveCategory] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
   const [activeChannel, setActiveChannel] = useState(null);
   const [activeUser, setActiveUser] = useState(null);
   const [showAuth, setShowAuth] = useState(false);
@@ -40,9 +41,31 @@ function App() {
     setAdList((prev) => prev.filter((a) => a.id !== id));
   };
 
-  const filteredAds = activeCategory === 'all'
+  const categoryFilteredAds = activeCategory === 'all'
     ? adList
     : adList.filter((ad) => ad.category === activeCategory);
+
+  const filteredAds = searchQuery
+    ? categoryFilteredAds.filter((ad) => {
+        const query = searchQuery.toLowerCase();
+        const channelInfo = channelByUser[ad.owner];
+        const userInfo = userByUsername[ad.owner];
+        const tagsStr = (ad.tags || []).join(' ').toLowerCase();
+        const channelName = channelInfo?.name?.toLowerCase() || '';
+        const channelCountry = channelInfo?.country?.toLowerCase() || '';
+        const userName = userInfo?.username?.toLowerCase() || ad.owner.toLowerCase();
+        return (
+          ad.title.toLowerCase().includes(query) ||
+          ad.description.toLowerCase().includes(query) ||
+          ad.category.toLowerCase().includes(query) ||
+          ad.owner.toLowerCase().includes(query) ||
+          tagsStr.includes(query) ||
+          channelName.includes(query) ||
+          userName.includes(query) ||
+          channelCountry.includes(query)
+        );
+      })
+    : categoryFilteredAds;
 
   useEffect(() => {
     const renderChannelFromHash = () => {
@@ -71,6 +94,8 @@ function App() {
       <Nav
         activeCategory={activeCategory}
         setActiveCategory={setActiveCategory}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
         activeChannel={activeChannel}
         channelList={channelList}
         activeUser={activeUser}
