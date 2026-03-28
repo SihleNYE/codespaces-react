@@ -26,7 +26,7 @@ export default function AuthForm({ onAuth, availableCountries, users }) {
         }
         setError('No Google user found. Please register with a Gmail address first.');
       } else if (provider === 'facebook') {
-        const facebookUser = users.find((u) => u.facebookUrl || u.facebook || u.email.toLowerCase().includes('facebook'));
+        const facebookUser = users.find((u) => u.facebookUrl || u.facebookUrl || u.email.toLowerCase().includes('facebook'));
         if (facebookUser) {
           onAuth(facebookUser);
           setStatus('Logged in with Facebook successfully!');
@@ -44,7 +44,8 @@ export default function AuthForm({ onAuth, availableCountries, users }) {
 
     setTimeout(() => {
       if (mode === 'login') {
-        const found = users.find((u) => u.username === username && u.password === password);
+        const hash = btoa(username + password); // Simple client-side hash sim
+        const found = users.find((u) => u.username === username && u.hashedPassword === hash);
         if (found) {
           onAuth(found);
           setStatus('Logged in successfully!');
@@ -72,17 +73,21 @@ export default function AuthForm({ onAuth, availableCountries, users }) {
           setStatus('');
           setError('User already exists, please login.');
         } else {
+          const hash = btoa(username + password); // Simple client-side hash sim
           const newUser = {
             id: users.length + 1,
             username,
             email,
-            password,
+            hashedPassword: hash,
             country,
             idNumber,
             whatsapp,
             facebookUrl,
           };
-          users.push(newUser);
+          // Return immutable copy to parent
+          onAuth(newUser);
+          setStatus('Account created and logged in!');
+          setError('');
           onAuth(newUser);
           setStatus('Account created and logged in!');
           setError('');

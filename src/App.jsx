@@ -93,19 +93,13 @@ function App() {
 
   return (
     <div className="App">
-      <Nav
-        activeCategory={activeCategory}
-        setActiveCategory={setActiveCategory}
+<Nav
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
-        activeChannel={activeChannel}
-        channelList={channelList}
         activeUser={activeUser}
         showAuth={showAuth}
         setShowAuth={setShowAuth}
         setActiveUser={setActiveUser}
-        handleChannelClick={handleChannelClick}
-        setActiveChannel={setActiveChannel}
       />
 
       {!activeUser && showAuth && (

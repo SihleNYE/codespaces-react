@@ -1,18 +1,12 @@
 import React from "react";
 
 const Nav = ({
-  activeCategory,
-  setActiveCategory,
   searchQuery,
   setSearchQuery,
-  activeChannel,
-  channelList,
   activeUser,
   showAuth,
   setShowAuth,
   setActiveUser,
-  handleChannelClick,
-  setActiveChannel,
 }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light px-3">
